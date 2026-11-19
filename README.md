@@ -26,7 +26,7 @@ Open the Vite URL printed in the terminal. The Vite development server proxies
 ## Personalize the invitation
 
 - Update the name, age, date, time, venue, address, and note in
-  `src/invitation.js`. The party time is currently marked as to be announced.
+  `src/invitation.js`.
 - Xienna's extracted portrait is in `public/xienna.png` and is shown on the
   invitation. Replace that public image (and update `photo` in
   `src/invitation.js` if you use a different filename) to change it for all
