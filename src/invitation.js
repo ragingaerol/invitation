@@ -7,5 +7,5 @@ export const invitation = {
   venue: "Abby's Beach House",
   address: "Ata-Atahun, Nasipit, Agusan del Norte",
   note: "One sweet year, one berry special day. Come celebrate Xienna's first birthday with us!",
-  photo: "",
+  photo: "/xienna.png",
 };
