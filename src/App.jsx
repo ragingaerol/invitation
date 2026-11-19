@@ -76,14 +76,19 @@ function App() {
   return (
     <main>
       <header className="topbar">
-        <a className="brand" href="#home" aria-label={`${invitation.name}'s birthday invitation`}>
+        <a className="brand" href="#home" aria-label={`${invitation.nickname}'s birthday invitation`}>
           <span className="brand-mark" aria-hidden="true">✳</span>
-          <span>{invitation.name}'s big day</span>
+          <span>{invitation.nickname}'s Big day</span>
         </a>
         <a className="topbar-link" href="#rsvp">RSVP <span aria-hidden="true">↗</span></a>
       </header>
 
       <section className="hero" id="home">
+        <div className="balloon-cluster" aria-hidden="true">
+          <span className="balloon balloon-one" />
+          <span className="balloon balloon-two" />
+          <span className="balloon balloon-three" />
+        </div>
         <div className="hero-copy">
           <p className="eyebrow"><span aria-hidden="true">✷</span> A little celebration</p>
           <h1>{invitation.nickname}'s<br /><span className="headline-name">berry first</span><br />Birthday</h1>
@@ -122,6 +127,7 @@ function App() {
               aria-label="Choose a photo"
             />
           </div>
+          <span className="berry-sticker" aria-hidden="true">🍓</span>
           <div className="photo-caption"><span aria-hidden="true">♡</span> The birthday girl</div>
         </div>
         <span className="hero-doodle" aria-hidden="true">✳</span>
