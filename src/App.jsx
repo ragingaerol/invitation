@@ -140,18 +140,21 @@ function App() {
         </div>
         <div className="detail-grid">
           <article className="detail-card detail-date">
+            <span className="detail-berry" aria-hidden="true">🍓</span>
             <span className="detail-icon" aria-hidden="true">◷</span>
             <p className="detail-label">Mark your calendar</p>
             <h3>{invitation.date}</h3>
             <p>{invitation.time}</p>
           </article>
           <article className="detail-card detail-place">
+            <span className="detail-berry" aria-hidden="true">🍓</span>
             <span className="detail-icon" aria-hidden="true">⌖</span>
             <p className="detail-label">Come find us</p>
             <h3>{invitation.venue}</h3>
             <p>{invitation.address}</p>
           </article>
           <article className="detail-card detail-note">
+            <span className="detail-berry" aria-hidden="true">🍓</span>
             <span className="detail-icon" aria-hidden="true">♡</span>
             <p className="detail-label">A little note</p>
             <h3>Just bring your lovely self!</h3>
