@@ -90,10 +90,17 @@ function App() {
       </header>
 
       <section className="hero" id="home">
-        <div className="balloon-cluster" aria-hidden="true">
-          <span className="balloon balloon-one" />
-          <span className="balloon balloon-two" />
-          <span className="balloon balloon-three" />
+        <div className="balloon-cluster">
+          <button className="balloon balloon-one" type="button" aria-label="Pink balloon one" />
+          <button className="balloon balloon-two" type="button" aria-label="Pink balloon two" />
+          <button className="balloon balloon-three" type="button" aria-label="Pink balloon three" />
+          <button className="balloon balloon-four" type="button" aria-label="Pink balloon four" />
+          <button className="balloon balloon-five" type="button" aria-label="Pink balloon five" />
+          <button className="balloon balloon-six" type="button" aria-label="Pink balloon six" />
+          <button className="balloon balloon-seven" type="button" aria-label="Pink balloon seven" />
+          <button className="balloon balloon-eight" type="button" aria-label="Pink balloon eight" />
+          <button className="balloon balloon-nine" type="button" aria-label="Pink balloon nine" />
+          <button className="balloon balloon-ten" type="button" aria-label="Pink balloon ten" />
         </div>
         <div className="hero-copy">
           <p className="eyebrow"><span aria-hidden="true">✷</span> A little celebration</p>
