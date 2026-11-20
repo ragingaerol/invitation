@@ -1,10 +1,17 @@
 import { useRef, useState } from "react";
 import { invitation } from "./invitation.js";
+import { supabase } from "./supabase.js";
 
 function App() {
-  const [photo, setPhoto] = useState(
-    () => window.localStorage.getItem("birthday-photo") || invitation.photo,
-  );
+  const [photo, setPhoto] = useState(() => {
+    const photoVersion = "2026-11-20-xienna";
+    if (window.localStorage.getItem("birthday-photo-version") !== photoVersion) {
+      window.localStorage.removeItem("birthday-photo");
+      window.localStorage.setItem("birthday-photo-version", photoVersion);
+      return invitation.photo;
+    }
+    return window.localStorage.getItem("birthday-photo") || invitation.photo;
+  });
   const [name, setName] = useState("");
   const [attending, setAttending] = useState("");
   const [status, setStatus] = useState("idle");
@@ -25,6 +32,7 @@ function App() {
       const image = reader.result;
       try {
         window.localStorage.setItem("birthday-photo", image);
+        window.localStorage.setItem("birthday-photo-version", "2026-11-20-xienna");
         setPhoto(image);
         setMessage("");
       } catch {
@@ -41,19 +49,16 @@ function App() {
     setMessage("");
 
     try {
-      const response = await fetch("/api/rsvps", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          name: name.trim(),
-          attending: attending === "yes",
-        }),
-      });
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || "Your RSVP could not be saved. Please try again.");
+      if (!supabase) {
+        throw new Error("The RSVP service isn't configured yet. Please contact the organizer.");
       }
+
+      const { error } = await supabase.from("rsvps").insert({
+        name: name.trim(),
+        attending: attending === "yes",
+      });
+
+      if (error) throw error;
 
       setStatus("sent");
       setMessage(
@@ -66,9 +71,7 @@ function App() {
     } catch (error) {
       setStatus("error");
       setMessage(
-        error instanceof TypeError
-          ? "We couldn't reach the RSVP service. Please try again in a moment."
-          : error.message,
+        error.message || "Your RSVP could not be saved. Please try again in a moment.",
       );
     }
   }
@@ -80,7 +83,10 @@ function App() {
           <span className="brand-mark" aria-hidden="true">✳</span>
           <span>{invitation.nickname}'s Big day</span>
         </a>
-        <a className="topbar-link" href="#rsvp">RSVP <span aria-hidden="true">↗</span></a>
+        <nav className="topbar-nav" aria-label="Main navigation">
+          <a className="topbar-link" href="#rsvp">RSVP <span aria-hidden="true">↗</span></a>
+          <a className="topbar-link" href="/dashboard">Guest dashboard <span aria-hidden="true">↗</span></a>
+        </nav>
       </header>
 
       <section className="hero" id="home">
