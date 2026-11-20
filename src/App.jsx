@@ -279,6 +279,7 @@ function App() {
             <p className="eyebrow"><span aria-hidden="true">✷</span> Xienna's wish list</p>
             <h2 id="wishlist-title">A few thoughtful gifts</h2>
             <ul className="wishlist-list">
+              <li><span aria-hidden="true">🍓</span> Baby Essentials</li>
               <li><span aria-hidden="true">🍓</span> EQ diaper pants XL</li>
               <li><span aria-hidden="true">🍓</span> EQ Wipes</li>
               <li><span aria-hidden="true">🍓</span> Neutral clothes for 1-2 years old</li>
