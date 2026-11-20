@@ -3,9 +3,15 @@ import { invitation } from "./invitation.js";
 import { supabase } from "./supabase.js";
 
 function App() {
-  const [photo, setPhoto] = useState(
-    () => window.localStorage.getItem("birthday-photo") || invitation.photo,
-  );
+  const [photo, setPhoto] = useState(() => {
+    const photoVersion = "2026-11-20-xienna";
+    if (window.localStorage.getItem("birthday-photo-version") !== photoVersion) {
+      window.localStorage.removeItem("birthday-photo");
+      window.localStorage.setItem("birthday-photo-version", photoVersion);
+      return invitation.photo;
+    }
+    return window.localStorage.getItem("birthday-photo") || invitation.photo;
+  });
   const [name, setName] = useState("");
   const [attending, setAttending] = useState("");
   const [status, setStatus] = useState("idle");
@@ -26,6 +32,7 @@ function App() {
       const image = reader.result;
       try {
         window.localStorage.setItem("birthday-photo", image);
+        window.localStorage.setItem("birthday-photo-version", "2026-11-20-xienna");
         setPhoto(image);
         setMessage("");
       } catch {
