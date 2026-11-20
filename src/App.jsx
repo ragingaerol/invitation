@@ -191,6 +191,22 @@ function App() {
               .
             </p>
           </article>
+          <article className="detail-card detail-dress-code">
+            <span className="detail-berry" aria-hidden="true">🍓</span>
+            <span className="detail-icon" aria-hidden="true">♛</span>
+            <p className="detail-label">Dress code</p>
+            <h3>We'd love our guests to wear colors inspired by our palette:</h3>
+            <div className="dress-code-colors" aria-label="Dress code colors">
+              <div className="dress-code-color">
+                <span className="color-swatch white" aria-hidden="true"></span>
+                <span>White</span>
+              </div>
+              <div className="dress-code-color">
+                <span className="color-swatch baby-pink" aria-hidden="true"></span>
+                <span>Baby Pink</span>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
