@@ -1,27 +1,29 @@
 # Birthday Invitation
 
-A strawberry-pink React invitation with a Laravel API for saving guest RSVPs
-to SQLite.
+A strawberry-pink React invitation with a Supabase backend for saving and
+viewing guest RSVPs.
+
+## Set up Supabase
+
+1. Create a Supabase project.
+2. In the Supabase SQL Editor, run [`supabase/schema.sql`](supabase/schema.sql).
+   This creates the RSVP table and allows anyone with the public page to submit
+   and view RSVP names and attendance responses.
+3. Copy `.env.example` to `.env.local` and fill in the project URL and anon key
+   from the Supabase project API settings. The anon key is intended for browser
+   use; never put a service-role key in the frontend.
 
 ## Run locally
 
-In one terminal, start the Laravel API:
-
-```powershell
-cd backend
-php artisan migrate
-php artisan serve
-```
-
-In a second terminal, start the React app from the project root:
+From the project root:
 
 ```powershell
 npm install
 npm run dev
 ```
 
-Open the Vite URL printed in the terminal. The Vite development server proxies
-`/api` requests to Laravel at `http://127.0.0.1:8000`.
+Open the Vite URL printed in the terminal. The invitation is at `/` and the
+public RSVP dashboard is at `/dashboard`.
 
 ## Personalize the invitation
 
@@ -32,14 +34,14 @@ Open the Vite URL printed in the terminal. The Vite development server proxies
   `src/invitation.js` if you use a different filename) to change it for all
   invitees. The on-page photo button only previews a replacement in the current
   browser.
-- Guest names and attendance choices are stored in
-  `backend/database/database.sqlite`. The public API only accepts RSVPs; it
-  does not expose the guest list.
+- Guest names and attendance choices are stored in the Supabase `rsvps` table.
+- The dashboard is public: anyone with its URL can view RSVP names and
+  attendance responses.
+- RSVPs already stored in the old Laravel SQLite database are not copied to
+  Supabase automatically.
 
 ## Verify
 
 ```powershell
 npm run build
-cd backend
-php artisan test
 ```
