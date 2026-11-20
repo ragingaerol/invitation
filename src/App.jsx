@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { invitation } from "./invitation.js";
 import { supabase } from "./supabase.js";
 
@@ -16,7 +16,19 @@ function App() {
   const [attending, setAttending] = useState("");
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
+  const [wishlistOpen, setWishlistOpen] = useState(false);
   const photoInput = useRef(null);
+
+  useEffect(() => {
+    if (!wishlistOpen) return undefined;
+
+    function closeOnEscape(event) {
+      if (event.key === "Escape") setWishlistOpen(false);
+    }
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [wishlistOpen]);
 
   function choosePhoto(event) {
     const file = event.target.files?.[0];
@@ -103,7 +115,7 @@ function App() {
           <button className="balloon balloon-ten" type="button" aria-label="Pink balloon ten" />
         </div>
         <div className="hero-copy">
-          <p className="eyebrow"><span aria-hidden="true">✷</span> A little celebration</p>
+          <p className="eyebrow"><span aria-hidden="true">✷</span> You are cordially invited</p>
           <h1>{invitation.nickname}'s<br /><span className="headline-name">berry first</span><br />Birthday</h1>
           <p className="intro">{invitation.note}</p>
           <a className="button button-primary" href="#rsvp">Save your spot <span aria-hidden="true">↓</span></a>
@@ -170,8 +182,14 @@ function App() {
             <span className="detail-berry" aria-hidden="true">🍓</span>
             <span className="detail-icon" aria-hidden="true">♡</span>
             <p className="detail-label">A little note</p>
-            <h3>Just bring your lovely self!</h3>
-            <p>Good vibes and party shoes encouraged.</p>
+            <h3>Your presence is the greatest gift.</h3>
+            <p>
+              If you would like to give a gift, you can find our wish list{" "}
+              <button className="wishlist-link" type="button" onClick={() => setWishlistOpen(true)}>
+                here
+              </button>
+              .
+            </p>
           </article>
         </div>
       </section>
@@ -235,6 +253,42 @@ function App() {
         <span>Made with <span aria-label="love">♥</span> for {invitation.name}</span>
         <a href="#home">Back to top ↑</a>
       </footer>
+
+      {wishlistOpen && (
+        <div
+          className="wishlist-backdrop"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setWishlistOpen(false);
+          }}
+        >
+          <section
+            className="wishlist-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="wishlist-title"
+          >
+            <button
+              className="wishlist-close"
+              type="button"
+              aria-label="Close wish list"
+              onClick={() => setWishlistOpen(false)}
+            >
+              ×
+            </button>
+            <p className="eyebrow"><span aria-hidden="true">✷</span> Xienna's wish list</p>
+            <h2 id="wishlist-title">A few thoughtful gifts</h2>
+            <ul className="wishlist-list">
+              <li><span aria-hidden="true">🍓</span> Baby Essentials</li>
+              <li><span aria-hidden="true">🍓</span> EQ diaper pants XL</li>
+              <li><span aria-hidden="true">🍓</span> EQ Wipes</li>
+              <li><span aria-hidden="true">🍓</span> Neutral clothes for 1-2 years old</li>
+              <li><span aria-hidden="true">🍓</span> Educational toys</li>
+              <li><span aria-hidden="true">🍓</span> Monetary gift for Xienna's savings</li>
+            </ul>
+          </section>
+        </div>
+      )}
     </main>
   );
 }
