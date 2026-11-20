@@ -84,7 +84,10 @@ h1 { margin-bottom: 22px; color: var(--berry); font-size: clamp(48px, 6vw, 72px)
 .sunburst-two { bottom: 15%; left: -9%; color: var(--rose); font-size: 30px; }
 .hero-doodle { position: absolute; right: 44%; bottom: 10%; color: #df9caa; font-size: 27px; }
 .balloon-cluster { position: absolute; z-index: 1; inset: 0; overflow: hidden; pointer-events: none; }
-.balloon { position: absolute; width: 45px; height: 58px; border-radius: 50% 50% 46% 46%; background: linear-gradient(145deg, #fffafa 5%, #f8d9df 65%, #efaeb9); box-shadow: inset -7px -5px 0 #c95d7010, 0 7px 18px #96536312; animation: balloon-bob 4.5s ease-in-out infinite; }
+.balloon { position: absolute; width: 45px; height: 58px; padding: 0; border: 0; border-radius: 50% 50% 46% 46%; background: linear-gradient(145deg, #fffafa 5%, #f8d9df 65%, #efaeb9); box-shadow: inset -7px -5px 0 #c95d7010, 0 7px 18px #96536312; animation: balloon-bob 4.5s ease-in-out infinite; cursor: pointer; pointer-events: auto; transition: transform .25s ease, filter .25s ease; }
+.balloon:hover, .balloon:focus-visible { filter: saturate(1.18); transform: scale(1.12) rotate(5deg); animation-duration: 2s; }
+.balloon:focus-visible { outline: 2px solid var(--strawberry); outline-offset: 4px; }
+.balloon:active { transform: scale(.88); }
 .balloon::before { position: absolute; bottom: -5px; left: calc(50% - 4px); width: 0; height: 0; border-top: 7px solid #efaeb9; border-right: 4px solid transparent; border-left: 4px solid transparent; content: ""; }
 .balloon::after { position: absolute; top: calc(100% + 3px); left: 50%; height: 48px; border-left: 1px solid #e4b7bf; content: ""; transform: rotate(4deg); transform-origin: top; }
 .balloon-one { top: 4%; right: 17%; }
