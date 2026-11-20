@@ -103,7 +103,7 @@ function App() {
           <button className="balloon balloon-ten" type="button" aria-label="Pink balloon ten" />
         </div>
         <div className="hero-copy">
-          <p className="eyebrow"><span aria-hidden="true">✷</span> A little celebration</p>
+          <p className="eyebrow"><span aria-hidden="true">✷</span> You are cordially invited</p>
           <h1>{invitation.nickname}'s<br /><span className="headline-name">berry first</span><br />Birthday</h1>
           <p className="intro">{invitation.note}</p>
           <a className="button button-primary" href="#rsvp">Save your spot <span aria-hidden="true">↓</span></a>
