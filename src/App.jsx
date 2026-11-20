@@ -94,6 +94,9 @@ function App() {
           <button className="balloon balloon-one" type="button" aria-label="Pink balloon one" />
           <button className="balloon balloon-two" type="button" aria-label="Pink balloon two" />
           <button className="balloon balloon-three" type="button" aria-label="Pink balloon three" />
+          <button className="balloon balloon-four" type="button" aria-label="Pink balloon four" />
+          <button className="balloon balloon-five" type="button" aria-label="Pink balloon five" />
+          <button className="balloon balloon-six" type="button" aria-label="Pink balloon six" />
         </div>
         <div className="hero-copy">
           <p className="eyebrow"><span aria-hidden="true">✷</span> A little celebration</p>
